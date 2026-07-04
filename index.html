@@ -393,8 +393,7 @@
       }
 
       .info-card,
-      .leader-card,
-      .media-card {
+      .leader-card {
         border-radius: 8px;
         padding: 20px;
       }
@@ -405,15 +404,13 @@
       }
 
       .info-card h3,
-      .leader-card h3,
-      .media-card h3 {
+      .leader-card h3 {
         margin: 12px 0 0;
         font-size: 1.2rem;
       }
 
       .info-card p,
-      .leader-card p,
-      .media-card p {
+      .leader-card p {
         margin: 12px 0 0;
         color: #53615e;
         font-size: 0.95rem;
@@ -424,11 +421,55 @@
         background: var(--white);
       }
 
-      .details-grid {
+      .photos {
+        background: #fbfffe;
+      }
+
+      .photos-grid {
         display: grid;
-        grid-template-columns: 1fr 0.85fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-top: 40px;
+      }
+
+      .photo-card {
+        overflow: hidden;
+        border: 1px solid #dde8e5;
+        border-radius: 8px;
+        background: var(--white);
+        box-shadow: 0 8px 18px rgba(26, 62, 56, 0.07);
+      }
+
+      .photo-card img {
+        display: block;
+        width: 100%;
+        height: 288px;
+        object-fit: cover;
+      }
+
+      .photo-card video {
+        display: block;
+        width: 100%;
+        height: 320px;
+        background: #000;
+        object-fit: cover;
+      }
+
+      .photo-card-body {
+        padding: 20px;
+      }
+
+      .photo-card-body h3 {
+        margin-bottom: 0;
+        font-size: 1.2rem;
+      }
+
+      .photo-card-body p {
+        margin-bottom: 0;
+        margin-top: 10px;
+        color: #53615e;
+        font-size: 0.95rem;
+        line-height: 1.75;
       }
 
       .leadership-grid {
@@ -437,23 +478,12 @@
         gap: 20px;
       }
 
-      .media-grid {
-        display: grid;
-        gap: 20px;
-      }
-
       .leader-card {
         border: 1px dashed #bfe1dc;
         background: #fbfffe;
       }
 
-      .media-card {
-        border: 1px dashed #f0dca8;
-        background: var(--cream);
-      }
-
-      .photo-placeholder,
-      .media-placeholder {
+      .photo-placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -467,12 +497,6 @@
         aspect-ratio: 1;
         background: #e5f7f4;
         color: var(--teal);
-      }
-
-      .media-placeholder {
-        aspect-ratio: 16 / 9;
-        background: var(--white);
-        color: #9d6a00;
       }
 
       .donate {
@@ -524,6 +548,72 @@
         font-size: 0.92rem;
         font-weight: 700;
         line-height: 1.65;
+      }
+
+      .donation-card-inner {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 20px;
+      }
+
+      .bank-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .bank-item {
+        border: 1px solid #d9ece9;
+        background: #f7fffd;
+        border-radius: 6px;
+        padding: 16px;
+      }
+
+      .bank-label {
+        display: block;
+        color: var(--teal);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .bank-value {
+        display: block;
+        margin-top: 8px;
+        color: #172321;
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+
+      .qr-card {
+        border: 1px solid #d9ece9;
+        border-radius: 6px;
+        background: #fbfffe;
+        padding: 16px;
+      }
+
+      .qr-image {
+        display: block;
+        width: 100%;
+        margin-top: 14px;
+        border: 1px solid #e5ecea;
+        border-radius: 6px;
+        background: #fff;
+        object-fit: cover;
+      }
+
+      .support-panel {
+        margin-top: 20px;
+        border: 1px solid #dde8e5;
+        border-radius: 6px;
+        background: #fff;
+        padding: 16px;
+      }
+
+      .support-panel ul {
+        margin: 14px 0 0;
       }
 
       .footer {
@@ -578,8 +668,12 @@
         }
 
         .admissions-grid,
-        .details-grid,
-        .leadership-grid {
+        .leadership-grid,
+        .photos-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .donation-card-inner {
           grid-template-columns: 1fr;
         }
 
@@ -616,6 +710,7 @@
           <a class="nav-link" href="#projects">Projects</a>
           <a class="nav-link" href="#volunteer">Volunteer</a>
           <a class="nav-link" href="#admissions">Admissions</a>
+          <a class="nav-link" href="#gallery">Gallery</a>
           <a class="button button-coral" href="#donate">Donate</a>
         </div>
       </nav>
@@ -803,53 +898,103 @@
         <div class="section-inner">
           <p class="section-kicker">Foundation details</p>
           <h2 class="section-title">
-            Space for founder, board members, pictures, and videos.
+            Space for founder and board members.
           </h2>
-          <div class="details-grid">
-            <div class="leadership-grid">
-              <article class="leader-card">
-                <div class="photo-placeholder">Photo</div>
-                <h3>Founder name and photo</h3>
+          <div class="leadership-grid">
+            <article class="leader-card">
+              <div class="photo-placeholder">Photo</div>
+              <h3>Founder name and photo</h3>
+              <p>
+                Role, short introduction, and contact notes can be added here
+                later.
+              </p>
+            </article>
+            <article class="leader-card">
+              <div class="photo-placeholder">Photo</div>
+              <h3>Board member name and photo</h3>
+              <p>
+                Role, short introduction, and contact notes can be added here
+                later.
+              </p>
+            </article>
+            <article class="leader-card">
+              <div class="photo-placeholder">Photo</div>
+              <h3>Board member name and photo</h3>
+              <p>
+                Role, short introduction, and contact notes can be added here
+                later.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="photos" id="gallery">
+        <div class="section-inner">
+          <p class="section-kicker teal">Gallery</p>
+          <h2 class="section-title">Photos and video from Smile Foundation.</h2>
+          <p class="section-copy">
+            A glimpse of therapy, classroom learning, community moments, and a
+            short video from the foundation.
+          </p>
+          <div class="photos-grid">
+            <article class="photo-card">
+              <img
+                src="public/photos/photo-group-1.jpg"
+                alt="Smile Foundation group photo with children, families, and teachers in a bright classroom"
+              />
+              <div class="photo-card-body">
+                <h3>Community gathering</h3>
+                <p>A shared moment with families, children, and volunteers.</p>
+              </div>
+            </article>
+            <article class="photo-card">
+              <img
+                src="public/photos/photo-classroom.jpg"
+                alt="Children and teachers seated in a classroom with colorful wall art"
+              />
+              <div class="photo-card-body">
+                <h3>Learning in class</h3>
+                <p>Students working together in a bright learning space.</p>
+              </div>
+            </article>
+            <article class="photo-card">
+              <img
+                src="public/photos/photo-play-therapy.jpg"
+                alt="A child and therapist doing a play-based therapy activity on a mat"
+              />
+              <div class="photo-card-body">
+                <h3>Play-based therapy</h3>
                 <p>
-                  Role, short introduction, and contact notes can be added here
-                  later.
+                  Therapy that builds attention, confidence, and expression.
                 </p>
-              </article>
-              <article class="leader-card">
-                <div class="photo-placeholder">Photo</div>
-                <h3>Board member name and photo</h3>
-                <p>
-                  Role, short introduction, and contact notes can be added here
-                  later.
-                </p>
-              </article>
-              <article class="leader-card">
-                <div class="photo-placeholder">Photo</div>
-                <h3>Board member name and photo</h3>
-                <p>
-                  Role, short introduction, and contact notes can be added here
-                  later.
-                </p>
-              </article>
-            </div>
-            <div class="media-grid">
-              <article class="media-card">
-                <div class="media-placeholder">Media placeholder</div>
-                <h3>Photo gallery link or uploaded pictures</h3>
-                <p>
-                  Future space for real images, video embeds, or gallery links
-                  from the foundation.
-                </p>
-              </article>
-              <article class="media-card">
-                <div class="media-placeholder">Media placeholder</div>
-                <h3>Video link or embedded awareness film</h3>
-                <p>
-                  Future space for real images, video embeds, or gallery links
-                  from the foundation.
-                </p>
-              </article>
-            </div>
+              </div>
+            </article>
+            <article class="photo-card">
+              <img
+                src="public/photos/photo-therapy-ball.jpg"
+                alt="Children taking part in physical therapy with a ball and teacher support"
+              />
+              <div class="photo-card-body">
+                <h3>Movement support</h3>
+                <p>Guided physical activity for strength, balance, and comfort.</p>
+              </div>
+            </article>
+            <article class="photo-card" style="grid-column: 1 / -1;">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="public/photos/photo-group-1.jpg"
+              >
+                <source src="public/videos/foundation-gallery.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div class="photo-card-body">
+                <h3>Foundation video</h3>
+                <p>A short look at therapy, learning, and community activity.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -868,19 +1013,56 @@
             </p>
           </div>
           <aside class="donation-card" aria-label="Donation support areas">
-            <h3>Your gift can support</h3>
-            <ul>
-              <li>Therapy sessions for speech, movement, and emotional care</li>
-              <li>Teacher training and classroom learning materials</li>
-              <li>Toys, art supplies, games, and playground equipment</li>
-              <li>Awareness drives for inclusion and social responsibility</li>
-            </ul>
-            <a class="button button-coral" href="#top">
-              Support Smile Foundation
-            </a>
-            <div class="donation-note">
-              Payment barcode, donation links, and donor correspondence email
-              can be added here when ready.
+            <div class="donation-card-inner">
+              <section>
+                <p class="section-kicker teal">Bank details</p>
+                <h3>Support Smile Foundation</h3>
+                <div class="bank-grid">
+                  <div class="bank-item">
+                    <span class="bank-label">Account name</span>
+                    <span class="bank-value">SMILE FOUNDATION</span>
+                  </div>
+                  <div class="bank-item">
+                    <span class="bank-label">Bank</span>
+                    <span class="bank-value">
+                      Tamilnad Mercantile Bank Ltd., Boisar Branch
+                    </span>
+                  </div>
+                  <div class="bank-item">
+                    <span class="bank-label">Account number</span>
+                    <span class="bank-value">256100140450003</span>
+                  </div>
+                  <div class="bank-item">
+                    <span class="bank-label">IFSC code</span>
+                    <span class="bank-value">TMBL0000256</span>
+                  </div>
+                </div>
+                <div class="donation-note">
+                  Payment links and a correspondence email can be added here
+                  later.
+                </div>
+              </section>
+              <section class="qr-card">
+                <p class="section-kicker gold">Scan to pay</p>
+                <h3>UPI payment QR</h3>
+                <img
+                  class="qr-image"
+                  src="public/donation-qr.jpg"
+                  alt="Smile Foundation UPI payment QR code"
+                />
+                <p class="bank-value">UPI ID: 9665811707@okbizaxis</p>
+              </section>
+            </div>
+            <div class="support-panel">
+              <p class="section-kicker">Your gift can support</p>
+              <ul>
+                <li>
+                  Therapy sessions for speech, movement, and emotional care
+                </li>
+                <li>Teacher training and classroom learning materials</li>
+                <li>Toys, art supplies, games, and playground equipment</li>
+                <li>Awareness drives for inclusion and social responsibility</li>
+              </ul>
             </div>
           </aside>
         </div>
