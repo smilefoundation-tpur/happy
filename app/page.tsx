@@ -53,9 +53,57 @@ const leadershipSlots = [
   "Board member name and photo",
 ];
 
-const mediaSlots = [
-  "Photo gallery link or uploaded pictures",
-  "Video link or embedded awareness film",
+const galleryPhotos = [
+  {
+    src: "/photos/photo-group-1.jpg",
+    alt: "Smile Foundation group photo with children, families, and teachers in a bright classroom",
+    title: "Community gathering",
+    caption: "A shared moment with families, children, and volunteers.",
+  },
+  {
+    src: "/photos/photo-classroom.jpg",
+    alt: "Children and teachers seated in a classroom with colorful wall art",
+    title: "Learning in class",
+    caption: "Students working together in a bright learning space.",
+  },
+  {
+    src: "/photos/photo-play-therapy.jpg",
+    alt: "A child and therapist doing a play-based therapy activity on a mat",
+    title: "Play-based therapy",
+    caption: "Therapy that builds attention, confidence, and expression.",
+  },
+  {
+    src: "/photos/photo-therapy-ball.jpg",
+    alt: "Children taking part in physical therapy with a ball and teacher support",
+    title: "Movement support",
+    caption: "Guided physical activity for strength, balance, and comfort.",
+  },
+];
+
+const galleryVideo = {
+  src: "/videos/foundation-gallery.mp4",
+  alt: "Smile Foundation therapy and learning video",
+  title: "Foundation video",
+  caption: "A short look at therapy, learning, and community activity.",
+};
+
+const bankDetails = [
+  {
+    label: "Account name",
+    value: "SMILE FOUNDATION",
+  },
+  {
+    label: "Bank",
+    value: "Tamilnad Mercantile Bank Ltd., Boisar Branch",
+  },
+  {
+    label: "Account number",
+    value: "256100140450003",
+  },
+  {
+    label: "IFSC code",
+    value: "TMBL0000256",
+  },
 ];
 
 export default function Home() {
@@ -87,6 +135,12 @@ export default function Home() {
               href="#admissions"
             >
               Admissions
+            </a>
+            <a
+              className="hidden rounded-md px-3 py-2 transition hover:bg-white/15 sm:inline-flex"
+              href="#gallery"
+            >
+              Gallery
             </a>
             <a
               className="rounded-md bg-[#ff6f61] px-4 py-2 text-white shadow-lg shadow-black/20 transition hover:bg-[#f25f51]"
@@ -294,44 +348,83 @@ export default function Home() {
               Foundation details
             </p>
             <h2 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
-              Space for founder, board members, pictures, and videos.
+              Space for founder and board members.
             </h2>
           </div>
-          <div className="mt-10 grid gap-5 lg:grid-cols-[1fr_0.85fr]">
-            <div className="grid gap-5 sm:grid-cols-3">
-              {leadershipSlots.map((slot) => (
-                <article
-                  className="rounded-lg border border-dashed border-[#bfe1dc] bg-[#fbfffe] p-5"
-                  key={slot}
-                >
-                  <div className="flex aspect-square items-center justify-center rounded-md bg-[#e5f7f4] text-center text-sm font-bold text-[#007d7a]">
-                    Photo
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold">{slot}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#53615e]">
-                    Role, short introduction, and contact notes can be added
-                    here later.
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {leadershipSlots.map((slot) => (
+              <article
+                className="rounded-lg border border-dashed border-[#bfe1dc] bg-[#fbfffe] p-5"
+                key={slot}
+              >
+                <div className="flex aspect-square items-center justify-center rounded-md bg-[#e5f7f4] text-center text-sm font-bold text-[#007d7a]">
+                  Photo
+                </div>
+                <h3 className="mt-4 text-lg font-bold">{slot}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#53615e]">
+                  Role, short introduction, and contact notes can be added
+                  here later.
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="gallery"
+        className="bg-[#fbfffe] px-5 py-20 sm:px-8 lg:px-10"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase text-[#007d7a]">
+              Gallery
+            </p>
+            <h2 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+              Photos and video from Smile Foundation.
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-[#4c5b57]">
+              A glimpse of therapy, classroom learning, community moments, and
+              a short video from the foundation.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {galleryPhotos.map((photo) => (
+              <article
+                className="overflow-hidden rounded-lg border border-[#dde8e5] bg-white shadow-sm"
+                key={photo.src}
+              >
+                <img
+                  className="h-72 w-full object-cover"
+                  src={photo.src}
+                  alt={photo.alt}
+                />
+                <div className="p-5">
+                  <h3 className="text-lg font-bold">{photo.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-[#53615e]">
+                    {photo.caption}
                   </p>
-                </article>
-              ))}
-            </div>
-            <div className="grid gap-5">
-              {mediaSlots.map((slot) => (
-                <article
-                  className="rounded-lg border border-dashed border-[#f0dca8] bg-[#fff8e6] p-5"
-                  key={slot}
-                >
-                  <div className="flex aspect-video items-center justify-center rounded-md bg-white text-center text-sm font-bold text-[#9d6a00]">
-                    Media placeholder
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold">{slot}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5f533a]">
-                    Future space for real images, video embeds, or gallery
-                    links from the foundation.
-                  </p>
-                </article>
-              ))}
-            </div>
+                </div>
+              </article>
+            ))}
+            <article className="overflow-hidden rounded-lg border border-[#dde8e5] bg-white shadow-sm md:col-span-2">
+              <video
+                className="h-80 w-full bg-black object-cover"
+                controls
+                playsInline
+                preload="metadata"
+                poster="/photos/photo-group-1.jpg"
+              >
+                <source src={galleryVideo.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-5">
+                <h3 className="text-lg font-bold">{galleryVideo.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-[#53615e]">
+                  {galleryVideo.caption}
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -352,22 +445,61 @@ export default function Home() {
             </p>
           </div>
           <div className="rounded-lg border border-white/25 bg-white p-6 text-[#172321] shadow-2xl shadow-black/20">
-            <h3 className="text-2xl font-bold">Your gift can support</h3>
-            <ul className="mt-6 space-y-4 text-sm font-semibold leading-6 text-[#40504c]">
-              <li>Therapy sessions for speech, movement, and emotional care</li>
-              <li>Teacher training and classroom learning materials</li>
-              <li>Toys, art supplies, games, and playground equipment</li>
-              <li>Awareness drives for inclusion and social responsibility</li>
-            </ul>
-            <a
-              className="mt-7 inline-flex w-full items-center justify-center rounded-md bg-[#ff6f61] px-5 py-3 text-base font-bold text-white transition hover:bg-[#f25f51]"
-              href="#top"
-            >
-              Support Smile Foundation
-            </a>
-            <div className="mt-5 rounded-md border border-dashed border-[#f0dca8] bg-[#fff8e6] p-4 text-sm font-semibold leading-6 text-[#5f533a]">
-              Payment barcode, donation links, and donor correspondence email
-              can be added here when ready.
+            <div className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+              <section>
+                <p className="text-sm font-bold uppercase text-[#007d7a]">
+                  Bank details
+                </p>
+                <h3 className="mt-3 text-2xl font-bold">
+                  Support Smile Foundation
+                </h3>
+                <dl className="mt-6 grid gap-4">
+                  {bankDetails.map((detail) => (
+                    <div
+                      className="rounded-md border border-[#d9ece9] bg-[#f7fffd] p-4"
+                      key={detail.label}
+                    >
+                      <dt className="text-xs font-bold uppercase tracking-[0.08em] text-[#007d7a]">
+                        {detail.label}
+                      </dt>
+                      <dd className="mt-2 text-sm font-semibold leading-6 text-[#172321]">
+                        {detail.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-5 rounded-md border border-dashed border-[#f0dca8] bg-[#fff8e6] p-4 text-sm font-semibold leading-6 text-[#5f533a]">
+                  Payment links and a correspondence email can be added here
+                  later.
+                </div>
+              </section>
+              <section className="rounded-md border border-[#d9ece9] bg-[#fbfffe] p-4">
+                <p className="text-sm font-bold uppercase text-[#9d6a00]">
+                  Scan to pay
+                </p>
+                <h3 className="mt-3 text-xl font-bold">UPI payment QR</h3>
+                <img
+                  className="mt-4 w-full rounded-md border border-[#e5ecea] bg-white object-cover"
+                  src="/donation-qr.jpg"
+                  alt="Smile Foundation UPI payment QR code"
+                />
+                <p className="mt-4 text-sm font-semibold leading-6 text-[#5f533a]">
+                  UPI ID: 9665811707@okbizaxis
+                </p>
+              </section>
+            </div>
+            <div className="mt-6 rounded-md border border-[#dde8e5] bg-white p-4">
+              <p className="text-sm font-bold uppercase text-[#ff6f61]">
+                Your gift can support
+              </p>
+              <ul className="mt-4 space-y-4 text-sm font-semibold leading-6 text-[#40504c]">
+                <li>
+                  Therapy sessions for speech, movement, and emotional care
+                </li>
+                <li>Teacher training and classroom learning materials</li>
+                <li>Toys, art supplies, games, and playground equipment</li>
+                <li>Awareness drives for inclusion and social responsibility</li>
+              </ul>
             </div>
           </div>
         </div>
