@@ -31,7 +31,7 @@ export default {
     "app/layout.tsx": {
       "js": [],
       "css": [
-        "/assets/index-Ciluro_y.css"
+        "/assets/index-DwDNTmAR.css"
       ]
     }
   }
