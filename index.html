@@ -447,12 +447,53 @@
         object-fit: cover;
       }
 
-      .photo-card video {
+      .photo-card iframe {
         display: block;
         width: 100%;
-        height: 320px;
+        height: 100%;
         background: #000;
+        border: 0;
+      }
+
+      .video-stage {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+
+      .video-embed,
+      .video-fallback {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .video-fallback {
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .video-thumb {
+        display: block;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+      }
+
+      .video-play-badge {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        border-radius: 999px;
+        background: rgba(23, 35, 33, 0.88);
+        color: #ffffff;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
       }
 
       .photo-card-body {
@@ -614,6 +655,35 @@
 
       .support-panel ul {
         margin: 14px 0 0;
+      }
+
+      .tax-relief-card {
+        margin-top: 20px;
+        border: 1px solid #d9ece9;
+        border-radius: 6px;
+        background: #fbfffe;
+        padding: 16px;
+      }
+
+      .tax-relief-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .tax-relief-copy h3 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .tax-relief-copy p {
+        margin: 8px 0 0;
+        color: #53615e;
+        font-size: 0.95rem;
+        line-height: 1.75;
+        max-width: 580px;
       }
 
       .footer {
@@ -981,15 +1051,12 @@
               </div>
             </article>
             <article class="photo-card" style="grid-column: 1 / -1;">
-              <video
-                controls
-                playsinline
-                preload="metadata"
-                poster="public/photos/photo-group-1.jpg"
-              >
-                <source src="public/videos/foundation-gallery.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div
+                class="video-stage"
+                id="foundation-video-stage"
+                data-video-id="jR1AVb1KpK0"
+                data-video-title="Foundation video"
+              ></div>
               <div class="photo-card-body">
                 <h3>Foundation video</h3>
                 <p>A short look at therapy, learning, and community activity.</p>
@@ -1064,6 +1131,23 @@
                 <li>Awareness drives for inclusion and social responsibility</li>
               </ul>
             </div>
+            <div class="tax-relief-card">
+              <p class="section-kicker teal">ATG tax relief</p>
+              <div class="tax-relief-row">
+                <div class="tax-relief-copy">
+                  <h3>Income tax exemption document</h3>
+                  <p>Open the donor PDF for ATG tax relief details.</p>
+                </div>
+                <a
+                  class="button button-coral"
+                  href="donation/incometaxexemption.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open PDF
+                </a>
+              </div>
+            </div>
           </aside>
         </div>
       </section>
@@ -1078,5 +1162,39 @@
         </p>
       </div>
     </footer>
+    <script>
+      (function () {
+        var stage = document.getElementById("foundation-video-stage");
+        if (!stage) return;
+
+        var videoId = stage.getAttribute("data-video-id") || "jR1AVb1KpK0";
+        var title = stage.getAttribute("data-video-title") || "Foundation video";
+        var embedUrl =
+          "https://www.youtube-nocookie.com/embed/" + videoId + "?rel=0";
+        var watchUrl = "https://youtu.be/" + videoId;
+
+        if (window.location.protocol === "file:") {
+          stage.innerHTML =
+            '<a class="video-fallback" href="' +
+            watchUrl +
+            '" target="_blank" rel="noreferrer noopener">' +
+            '<img class="video-thumb" src="https://i.ytimg.com/vi/' +
+            videoId +
+            '/hqdefault.jpg" alt="' +
+            title +
+            '">' +
+            '<span class="video-play-badge">Watch on YouTube</span>' +
+            "</a>";
+          return;
+        }
+
+        stage.innerHTML =
+          '<iframe class="video-embed" src="' +
+          embedUrl +
+          '" title="' +
+          title +
+          '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+      })();
+    </script>
   </body>
 </html>
